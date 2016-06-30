@@ -24,18 +24,37 @@ client.auth(RDS_PWD,function(){
 // });
 
 
-client.on('ready',function(err){
-    client.hmset('short',{'js':'javascript','C#':'c Sharp'},redis.print);
-    client.hmset('short','SQL','Structured Query Language','HTML','HyperText Mark-up Laguage',redis.print);
+// client.on('ready',function(err){
+//     client.hmset('short',{'js':'javascript','C#':'c Sharp'},redis.print);
+//     client.hmset('short','SQL','Structured Query Language','HTML','HyperText Mark-up Laguage',redis.print);
 
-    client.hgetall('short',function(err,res){
-        if(err){
-            console.log('Error:' + err);
-            return ;
-        }
-        console.dir(res);
+//     client.hgetall('short',function(err,res){
+//         if(err){
+//             console.log('Error:' + err);
+//             return ;
+//         }
+//         console.dir(res);
+//     });
+//     console.log('connect');
+// });
+
+
+client.on('ready',function(err){
+    var key = 'skills';
+    client.sadd(key,'C#','java',redis.print);
+    client.sadd(key,'nodejs');
+    client.sadd(key,'MySQL');
+
+    client.multi()
+    .sismember(key,'C#')
+    .sismember(key)
+    .exec(function(err,replies){
+        console.log("MULTI got "+ replies.length + "replies");
+        replies.forEach(function(reply, inedx){
+            console.log("Reply " + index + ": " + reply.toString());
+        });
+        client.quit();
     });
-    console.log('connect');
 });
 
 client.on('ready',function(err){
