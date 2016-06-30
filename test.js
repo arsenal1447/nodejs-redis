@@ -38,6 +38,9 @@ client.auth(RDS_PWD,function(){
 //     console.log('connect');
 // });
 
+client.on('end',function(err){
+    console.log('end');
+});
 
 client.on('ready',function(err){
     var key = 'skills';
