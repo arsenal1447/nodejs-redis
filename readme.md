@@ -45,4 +45,4 @@ study url:[http://www.cnblogs.com/zhongweiv/p/node_redis.html#node_intro](http:/
 
 ## 显示数据
 
-[]()
+[](https://github.com/zxx1988328/nodejs-redis/blob/master/img/redis_result.png)
