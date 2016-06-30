@@ -23,7 +23,24 @@ study url:[http://www.cnblogs.com/zhongweiv/p/node_redis.html#node_intro](http:/
 	supervisor test.js
 
 
-
+设置密码的几种方式 
+	
+	第一种
+	// 连接远程redis
+	var redis = require('redis'),
+	    PDS_PORT = 6379,        //端口号
+	    PDS_HOST = '127.0.0.1', //服务器IP
+	    RDS_PWD = 'zxx123456', //服务器IP
+	    PDS_OPTS = {auth_pass:RDS_PWD},          //设置项
+	    client = redis.createClient(PDS_PORT,PDS_HOST,PDS_OPTS);
+	
+	第二种
+	client.auth('zxx123456');//填写密码
+	
+	第三种
+	client.auth(RDS_PWD,function(){
+	    console.log('通过认证');
+	});
 
 
 
