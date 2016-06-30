@@ -17,6 +17,12 @@ client.auth(RDS_PWD,function(){
     console.log('通过认证');
 });
 
+client.on('ready',function(err){
+    client.set('author','zxx',redis.print);
+    client.get('author',redis.print);
+    console.log('connect');
+});
+
 
 client.on('ready',function(err){
     console.log('ready');
