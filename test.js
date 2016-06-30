@@ -17,12 +17,26 @@ client.auth(RDS_PWD,function(){
     console.log('通过认证');
 });
 
+// client.on('ready',function(err){
+//     client.set('author','zxx',redis.print);
+//     client.get('author',redis.print);
+//     console.log('connect');
+// });
+
+
 client.on('ready',function(err){
-    client.set('author','zxx',redis.print);
-    client.get('author',redis.print);
+    client.hmset('short',{'js':'javascript','C#':'c Sharp'},redis.print);
+    client.hmset('short','SQL','Structured Query Language','HTML','HyperText Mark-up Laguage',redis.print);
+
+    client.hgetall('short',function(err,res){
+        if(err){
+            console.log('Error:' + err);
+            return ;
+        }
+        console.dir(res);
+    });
     console.log('connect');
 });
-
 
 client.on('ready',function(err){
     console.log('ready');

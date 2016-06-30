@@ -46,3 +46,20 @@ study url:[http://www.cnblogs.com/zhongweiv/p/node_redis.html#node_intro](http:/
 ## 显示数据
 
 ![](https://github.com/zxx1988328/nodejs-redis/blob/master/img/redis_result.png)
+
+
+	client.on('ready',function(err){
+	    client.hmset('short',{'js':'javascript','C#':'c Sharp'},redis.print);
+	    client.hmset('short','SQL','Structured Query Language','HTML','HyperText Mark-up Laguage',redis.print);
+	
+	    client.hgetall('short',function(err,res){
+	        if(err){
+	            console.log('Error:' + err);
+	            return ;
+	        }
+	        console.dir(res);
+	    });
+	    console.log('connect');
+	});
+
+![](https://github.com/zxx1988328/nodejs-redis/blob/master/img/redis_result1.png)
